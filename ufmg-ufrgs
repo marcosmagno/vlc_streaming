@@ -1,5 +1,64 @@
-#UFMG
+#UFMG - Server
+Run: 
+	cvlc -vvv udp://@10.0.0.2:1234 --sout=file/ps:video_marcos.mpg
+
+Verify: tcpdump -i ens4 port 1234 -vv -X
+https://markhneedham.com/blog/2012/07/15/tcpdump-learning-how-to-read-udp-packets/
+
+
+aap
+#UFRGS - Client
+Link example: 
+	http://hubblesource.stsci.edu/sources/video/clips/details/images/centaur_2.mpg
+run: 
+	cvlc -I dummy file:////home/srsLTE/centaur_2.mpg -vvv --sout "#transcode{vcodec=mp4v,vb=1024,scale=1}:duplicate{dst=std{access=udp,mux=ts,dst=150.164.10.86:1234}}"
 
 
 
-#UFRGS
+#duplicate{dst=display,dst="transcode{vcodec=mp4v,acodec=mpga,vb=800,ab=128,deinterlace}:rtp{mux=ts,dst=239.255.12.42,sdp=sap,name="TestStream"}"}' 	
+
+http://www.live555.com/openRTSP/
+
+https://markhneedham.com/blog/2012/07/15/tcpdump-learning-how-to-read-udp-packets/
+
+31 989831539
+
+
+
+cvlc -I dummy file:///home/winet/V%C3%ADdeos/big_buck_bunny_1080p_stereo.ogg -vvv --sout "#transcode{vcodec=mp4v,vb=1024,scale=1}:duplicate{dst=std{access=rtp,mux=ts,dst=150.164.10.54:5554}}"
+
+
+
+############# new test ####################
+-> Documentation: https://wiki.videolan.org/Documentation:Streaming_HowTo/VLM/
+
+## Server
+- vlc --ttl 12 -vvv --color -I telnet --telnet-password videolan --rtsp-host 0.0.0.0 --rtsp-port 8080
+
+
+## Configure telnet
+- telnet localhost 4212
+
+	new Marcos vod enabled
+	setup Marcos input centaur_2.mpg
+
+
+## Clinte
+- vlc rtsp://server:8080/Test
+
+testes
+
+setup Test2 input centaur_2.mpg
+setup Test2 output #transcoding{vcodec=h264,vb=512,acodec=mp4a}
+
+####### Use openRTSP
+openRTSP rtsp://192.168.0.16:8080/Marcos
+
+
+
+#################### test in microsoft #########################
+cvlc --ttl 12 -vvv --color -I telnet --telnet-password videolan --rtsp-host 
+
+192.185.136.254
+
+setup Test input centaur_2.mpg
