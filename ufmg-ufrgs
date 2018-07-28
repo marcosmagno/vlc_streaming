@@ -1,3 +1,4 @@
+##################### 
 #UFMG - Server
 Run: 
 	cvlc -vvv udp://@10.0.0.2:1234 --sout=file/ps:video_marcos.mpg
@@ -6,12 +7,15 @@ Verify: tcpdump -i ens4 port 1234 -vv -X
 https://markhneedham.com/blog/2012/07/15/tcpdump-learning-how-to-read-udp-packets/
 
 
-aap
 #UFRGS - Client
 Link example: 
 	http://hubblesource.stsci.edu/sources/video/clips/details/images/centaur_2.mpg
 run: 
 	cvlc -I dummy file:////home/srsLTE/centaur_2.mpg -vvv --sout "#transcode{vcodec=mp4v,vb=1024,scale=1}:duplicate{dst=std{access=udp,mux=ts,dst=150.164.10.86:1234}}"
+
+
+
+cvlc -I dummy file:////home/vm/Videos/centaur_2.mpg -vvv --sout "#transcode{vcodec=mp4v,vb=1024,scale=1}:duplicate{dst=std{access=udp,mux=ts,dst=150.164.10.58:1234}}"
 
 
 
@@ -29,7 +33,7 @@ cvlc -I dummy file:///home/winet/V%C3%ADdeos/big_buck_bunny_1080p_stereo.ogg -vv
 
 
 
-############# new test ####################
+############# TELNET ####################
 -> Documentation: https://wiki.videolan.org/Documentation:Streaming_HowTo/VLM/
 
 ## Server
@@ -40,11 +44,14 @@ cvlc -I dummy file:///home/winet/V%C3%ADdeos/big_buck_bunny_1080p_stereo.ogg -vv
 - telnet localhost 4212
 
 	new Marcos vod enabled
-	setup Marcos input centaur_2.mpg
+	setup Marcos input SampleVideo_360x240_30mb.mp4
+	centaur_2.mpg
 
 
 ## Clinte
-- vlc rtsp://server:8080/Test
+- vlc rtsp://server:8080/Marcos
+- corrigindo erros:
+ 	vlc -vvv -A alsa,none --alsa-audio-device default rtsp://150.164.10.58:8080/Marcos
 
 testes
 
@@ -62,3 +69,19 @@ cvlc --ttl 12 -vvv --color -I telnet --telnet-password videolan --rtsp-host
 192.185.136.254
 
 setup Test input centaur_2.mpg
+
+
+
+
+
+Tools:
+iperf3 -i 10 -s
+
+
+
+
+##################### Correção na instalção na VM ##################
+sudo apt-get install dbus-x11
+
+sudo apt install xinit
+cvlc -I dummy file:////home/vm/SampleVideo_720x480_10mb.mp4 -vvv --sout "#transcode{vcodec=mp4v,vb=1024,scale=1}:duplicate{dst=std{access=udp,mux=ts,dst=150.164.10.58:1234}}"
