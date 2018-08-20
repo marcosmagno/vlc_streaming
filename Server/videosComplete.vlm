@@ -1,0 +1,30 @@
+# VLC media player VLM command batch
+# http://www.videolan.org/vlc/
+
+new BBB_1080.ogg vod enabled
+setup BBB_1080.ogg input "file:///home/winet/V%C3%ADdeos/big_buck_bunny_1080p_stereo.ogg"
+setup BBB_1080.ogg option file-caching=300
+
+new BBB_720.ogg vod enabled
+setup BBB_720.ogg input "file:///home/winet/V%C3%ADdeos/big_buck_bunny_720p_stereo.ogg"
+setup BBB_720.ogg option file-caching=300
+
+new BBB_480.ogg vod enabled
+setup BBB_480.ogg input "file:///home/winet/V%C3%ADdeos/big_buck_bunny_480p_stereo.ogg"
+setup BBB_480.ogg option file-caching=300
+
+new BBB_1080.mov vod enabled
+setup BBB_1080.mov input "file:///home/winet/V%C3%ADdeos/big_buck_bunny_1080p_h264.mov"
+setup BBB_1080.mov option file-caching=300
+
+new BBB_720.mov vod enabled
+setup BBB_720.mov input "file:///home/winet/V%C3%ADdeos/big_buck_bunny_720p_h264.mov"
+setup BBB_720.mov option file-caching=300
+
+new BBB_480.mov vod enabled
+setup BBB_480.mov input "file:///home/winet/V%C3%ADdeos/big_buck_bunny_480p_h264.mov"
+setup BBB_480.mov option file-caching=300
+
+new BBB640 vod enabled
+setup BBB640 input "file:///home/winet/V%C3%ADdeos/BigBuckBunny_640x360.m4v"
+
